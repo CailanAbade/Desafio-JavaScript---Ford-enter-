@@ -4,10 +4,16 @@
 
 //Array storage class
 let carouselArr = [];
-
-
 //class Carousel
 class Carousel {
+
+    constructor(imagem, titulo, link) {
+        this.imagem = imagem;
+        this.titulo = titulo;
+        this.link = link;
+        
+    }
+
 
     
       
@@ -27,6 +33,23 @@ class Carousel {
     }
 
     static Next(){
-        
+        document.getElementById("carousel").innerHTML = "<a href='" + carouselArr[Carousel._sequence].link + "'><img src='" + carouselArr[Carousel._sequence].imagem + "'></a>"
+        document.getElementById("carousel-title").innerText = carouselArr[Carousel._sequence].titulo;
+        Carousel._sequence++
+        if(Carousel._sequence >= Carousel._size){
+            Carousel._sequence = 0
+        }
     }
-};
+
+    static Prev(){
+        document.getElementById("carousel").innerHTML = "<a href='" + carouselArr[Carousel._sequence].link + "'><img src='" + carouselArr[Carousel._sequence].imagem + "'></a>"
+        document.getElementById("carousel-title").innerText = carouselArr[Carousel._sequence].titulo;
+        Carousel._sequence--
+        if(Carousel._sequence < 0){
+            Carousel._sequence = Carousel._size - 1
+        }
+    }
+
+    
+
+}
